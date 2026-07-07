@@ -1,0 +1,116 @@
+# .github/workflows/azure_deploy_backend.yml
+
+name: Deploy Backend (Python → ACR → App Service)
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # Checkout repo
+      # -----------------------------
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # -----------------------------
+      # Set up Python (NEW)
+      # -----------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # -----------------------------
+      # Install dependencies (NEW)
+      # -----------------------------
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r backend/requirements.txt
+          export PYTHONPATH=$PWD
+
+      # -----------------------------
+      # Azure Login (OIDC)
+      # -----------------------------
+      - name: Azure Login (OIDC)
+        uses: azure/login@v2.2.0
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # -----------------------------
+      # Build + Push image to ACR
+      # -----------------------------
+      - name: Build and push image to ACR
+        run: |
+          az acr build \
+            --registry ${{ secrets.AZURE_ACR_NAME }} \
+            --image pdfconverter:${{ github.sha }} \
+            --file docker/Dockerfile \
+            .
+
+      # -----------------------------
+      # Set App Service settings
+      # -----------------------------
+      - name: Set App Service settings
+        run: |
+
+          echo "Setting App Service settings..."
+
+          az webapp config appsettings set \
+            --name pdfconvertpro-api \
+            --resource-group pdfconvertpro-rg \
+            --settings \
+              DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+              APIM_SUBSCRIPTION_KEY="${{ secrets.APIM_SUBSCRIPTION_KEY }}" \
+              AZURE_API_CLIENT_ID="${{ secrets.AZURE_API_CLIENT_ID }}" \
+              CIAM_TENANT_ID="${{ secrets.CIAM_TENANT_ID }}" \
+              AZURE_AUTHORITY="${{ secrets.AZURE_AUTHORITY }}"
+
+      # -----------------------------
+      # RUN DATABASE MIGRATIONS (NEW - IMPORTANT)
+      # -----------------------------
+      #- name: Run Alembic migrations
+      #  run: |
+      #    echo "Running database migrations..."
+      #    export PYTHONPATH=$PWD
+      #    alembic -c alembic.ini upgrade head
+      #  env:
+      #    DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      # -----------------------------
+      # Deploy to App Service (Container)
+      # -----------------------------
+      - name: Deploy to App Service (Container)
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: pdfconvertpro-api
+          images: ${{ secrets.AZURE_ACR_LOGIN_SERVER }}/pdfconverter:${{ github.sha }}
+
+      # -----------------------------
+      # Restart App Service
+      # -----------------------------
+      - name: Restart App Service
+        run: |
+          az webapp restart \
+            --name pdfconvertpro-api \
+            --resource-group pdfconvertpro-rg
+
+      # -----------------------------
+      # Verify deployment
+      # -----------------------------
+      - name: Verify deployment
+        run: |
+          az webapp show \
+            --name pdfconvertpro-api \
+            --resource-group pdfconvertpro-rg

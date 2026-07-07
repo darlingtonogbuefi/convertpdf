@@ -1,0 +1,109 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+#############################################
+# Sensitive Variables
+# ⚠️ DO NOT COMMIT THESE TO GIT
+#############################################
+
+secrets.yaml
+structure.txt
+terraform_user_creds.txt
+elastic-selfManagedFleet/values-fleet-server.yaml
+
+# Dependencies
+/node_modules
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Build / Production
+/.next/
+/out/
+/build
+dist
+dist-ssr
+
+# Testing
+/coverage
+
+# Temp / Misc
+.DS_Store
+*.pem
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment files
+.env*.local
+.env.*
+.env.production
+.env.production.*
+.env.production.master
+.env
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Tempo
+**/tempobook/dynamic/
+**/tempobook/storyboards/
+
+# Git (⚠️ unusual to ignore this)
+.git
+
+# Editors / IDEs
+.vscode/*
+!.vscode/extensions.json
+.vscode/settings.json
+.idea
+.vs
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Terraform
+.terraform/
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+**/.terraform.lock.hcl
+*.tfvars
+terraform.tfvars
+terraform.tfvars.backup
+test.auto.tfvars
+# !terraform.tfvars
+templates/basic/terraform.tfvars
+templates/platform_landing_zone/examples/test/*
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+crash.log
+terraform.log
+tfplan
+tfplan.txt
+
+# Misc
+*.tsbuildinfo
+openapi.json
+backend/alembic
+alembic

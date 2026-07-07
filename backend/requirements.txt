@@ -1,0 +1,90 @@
+#  backend/requirements.txt
+
+# =========================
+# Core API & Server
+# =========================
+fastapi
+uvicorn[standard]
+python-multipart
+
+# =========================
+# Security & Auth
+# =========================
+# python-jose[cryptography]   # JWT authentication
+PyJWT
+cryptography
+python-multipart
+slowapi
+httpx
+
+# =========================
+# PDF ↔ Office
+# =========================
+pdf2docx
+python-docx
+openpyxl
+python-pptx
+docx2pdf
+
+# =========================
+# PDF Processing
+# =========================
+PyMuPDF
+PyPDF2
+pypdf
+pdf2image
+reportlab
+#fpdf
+fpdf2
+pikepdf
+pydantic
+typing
+docx
+#pypandoc
+
+# =========================
+# OCR & Images
+# =========================
+Pillow
+pytesseract
+paddleocr                   # OCR engine
+paddlepaddle               # Deep learning backend for PaddleOCR
+pdfplumber
+#tabula
+# =========================
+# Data & Tables
+# =========================
+#pandas
+camelot-py
+opencv-python               # Required by camelot-py[cv]
+
+# =========================
+# Compression (system tool wrapper)
+# =========================
+ghostscript
+
+# =========================
+# Machine Learning / Clustering
+# =========================
+#scikit-learn
+
+
+# =========================
+# Optional system dependencies (NOT pip)
+# =========================
+# libreoffice  → for high-fidelity PPT → PDF
+# poppler-utils → required by pdf2image
+# tesseract-ocr → required by pytesseract
+
+python-dotenv
+boto3
+
+# =========================
+# Database Core
+# =========================
+
+sqlalchemy
+psycopg2-binary
+alembic
+azure-storage-blob
+azure-identity

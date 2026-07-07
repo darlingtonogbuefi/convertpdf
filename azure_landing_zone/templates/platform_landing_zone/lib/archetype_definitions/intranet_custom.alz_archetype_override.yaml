@@ -1,0 +1,15 @@
+# templates\platform_landing_zone\lib\archetype_definitions\internal_apps(intranet)_custom.alz_archetype_override.yaml
+
+base_archetype: corp
+name: intranet_custom
+policy_assignments_to_add: []
+# To remove the private DNS zones policy for private endpoints, comment out the following line:
+# "Deploy-Private-DNS-Zones"
+# policy_assignments_to_remove: [Enable-DDoS-VNET, Deploy-Private-DNS-Zones]
+# policy_assignments_to_remove: [Enable-DDoS-VNET]
+policy_definitions_to_add: []
+policy_definitions_to_remove: []
+policy_set_definitions_to_add: []
+policy_set_definitions_to_remove: []
+role_definitions_to_add: []
+role_definitions_to_remove: []

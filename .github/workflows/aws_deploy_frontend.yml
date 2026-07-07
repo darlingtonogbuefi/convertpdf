@@ -1,0 +1,58 @@
+# .github\workflows\aws_deploy_frontend.yml
+name: Deploy Frontend to S3 + CloudFront
+
+on:
+  push:
+    branches-ignore: # ignore pushes to main (optional, can be removed if you want to trigger on main)
+    #branches: # trigger on pushes to main
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Install frontend dependencies
+      - name: Install frontend dependencies
+        run: npm install
+
+      # Build frontend
+      - name: Build frontend
+        run: npm run build
+        env:
+          VITE_BACKEND_URL: ${{ secrets.AWS_VITE_BACKEND_URL }}
+
+      # Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Deploy to frontend S3 bucket
+      - name: Deploy to Frontend S3
+        run: |
+          # Sync build output to the frontend bucket
+          aws s3 sync dist/ s3://${{ secrets.FRONTEND_S3_BUCKET }}/ --delete
+          # Ensure index.html is the default root object for SPA
+          aws s3 cp dist/index.html s3://${{ secrets.FRONTEND_S3_BUCKET }}/index.html
+
+      # Invalidate CloudFront cache
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v1
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          PATHS: "/*"
