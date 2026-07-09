@@ -1,0 +1,197 @@
+/* ==========================================================
+   Microsoft Entra External ID - Custom Branding CSS
+   Purple Accent + Clean Flat UI (SAFE VERSION)
+   ========================================================== */
+
+
+/* ---------- Center Page ---------- */
+
+.ext-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ---------- Sign-in Card ---------- */
+
+.ext-sign-in-box {
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    transform: translateY(-10px);
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+    border: 2px solid #4b5563;
+
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 360px;
+    min-width: 300px;
+
+    min-height: 330px;
+    max-height: 400px;
+
+    box-sizing: border-box;
+
+    flex: 0 0 auto;
+
+    /* 🔥 GLOBAL TYPOGRAPHY BASELINE (SAFE) */
+    font-size: 15px;
+    line-height: 1.5;
+    color: #111827;
+}
+
+
+/* ==========================================================
+   SAFE TEXT AREAS (ONLY ext-* SELECTORS)
+   ========================================================== */
+
+.ext-title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 16px;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.ext-subtitle {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+
+/* Footer + boilerplate + links */
+.ext-footer-links,
+.ext-boilerplate-text,
+.ext-password-reset-links-container {
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    color: #6b7280;
+}
+
+
+/* ---------- BUTTON CONTAINER ---------- */
+
+.ext-button-field-container {
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================================
+   INPUT FIELD
+   ========================================================== */
+
+.ext-input.ext-text-box {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+
+    height: 34px;
+
+    padding: 4px 8px;
+
+    font-size: 14px;
+
+    background: #ffffff;
+
+    border: 2px solid rgba(167, 139, 250, 0.35);
+    border-radius: 12px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+.ext-button.ext-primary,
+.ext-button.ext-secondary {
+    font-size: 14px;
+    line-height: 1;
+}
+
+
+/* Primary button */
+.ext-button.ext-primary {
+    background: #6d5efc;
+    color: #ffffff;
+    font-weight: 600;
+
+    border: 1px solid rgba(139, 124, 246, 0.6);
+    border-radius: 4px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    padding: 6px 10px;
+
+    width: 100%;
+    max-width: 360px;
+
+    display: block;
+    margin: 8px auto;
+
+    box-sizing: border-box;
+
+    min-height: unset !important;
+    height: auto !important;
+}
+
+
+/* Secondary button */
+.ext-button.ext-secondary {
+    background: #f3f4f6;
+    color: #111827;
+    font-weight: 600;
+
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+
+    padding: 6px 10px;
+
+    width: 100%;
+    max-width: 360px;
+
+    display: block;
+    margin: 8px auto;
+
+    box-sizing: border-box;
+
+    min-height: unset !important;
+    height: auto !important;
+}
+
+
+/* ---------- ERROR ---------- */
+
+.ext-error {
+    text-align: center;
+    min-height: 24px;
+    font-size: 14px;
+}
+
+
+/* ---------- BOILERPLATE ---------- */
+
+.ext-boilerplate-text {
+    color: #111111 !important;
+    margin-top: 36px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.ext-footer-links {
+    text-align: center;
+}
