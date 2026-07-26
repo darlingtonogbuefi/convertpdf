@@ -225,10 +225,9 @@ Cloud deployment pipelines
 
 Example project layout:
 
-pdfconverterpro/
+convertpdf
 │
-├── frontend/
-│   ├── src/
+├── ├── src/
 │   ├── components/
 │   └── package.json
 │
@@ -237,11 +236,16 @@ pdfconverterpro/
 │   ├── api/
 │   └── requirements.txt
 │
-├── infrastructure/
-│   ├── aws/
-│   └── azure/
+├── ├── .github/
+│   └── aws_infra/
+│   └── azure_infra/
+│   └── azure_landing_zone/
+│   └── docker/
+│   
 │
 └── README.md
+
+
 🚀 Production Deployment
 
 For production environments, consider implementing:
