@@ -1,49 +1,36 @@
-# Welcome to pdfconverterpro project
+# PDF Converter Pro
 
-Follow these steps:
+A full-stack PDF conversion and editing platform with cloud-ready infrastructure for deploying as a scalable web application on **AWS** and **Microsoft Azure**.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+PDF Converter Pro provides tools for converting, editing, and managing PDF documents through a modern web interface. The project includes a high-performance backend API, responsive frontend, and deployment configurations supporting multiple cloud architectures.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🚀 Features
 
-# Step 3: Install the necessary dependencies.
-npm i
+- PDF conversion and document processing
+- PDF editing capabilities
+- Modern web-based user interface
+- RESTful backend API
+- Cloud-ready deployment architecture
+- Support for AWS and Azure environments
+- Scalable backend hosting options:
+  - AWS EC2 instances
+  - Azure Virtual Machines
+  - Azure App Service
+- Infrastructure designed for production deployment
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+# 🏗️ Cloud Deployment Options
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+PDF Converter Pro can be deployed using different cloud architectures:
 
-**Use GitHub Codespaces**
+## AWS Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Supported AWS deployment model:
 
-## What technologies are used for this project?
+- **Backend API Server**
+  - Hosted on Amazon EC2 instances
+  - Configurable security groups and networking
+  - Scalable compute resources
 
-This project is built with:
-
-- Python
-- FastAPI
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
+Typical architecture:
