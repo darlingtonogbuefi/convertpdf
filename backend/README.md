@@ -1,4 +1,4 @@
-# Welcome to pdfconverterpro project
+# Welcome to convertpdf project
 
 Follow these steps:
 
